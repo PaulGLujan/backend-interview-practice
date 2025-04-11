@@ -1,5 +1,5 @@
-CREATE TABLE Movies (
-    MovieID INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Movies (
+    MovieID SERIAL PRIMARY KEY,
     Title VARCHAR(255) NOT NULL,
     Summary TEXT,
     IMDBLink TEXT,
@@ -32,12 +32,12 @@ VALUES
     ),
     (
         'Pulp Fiction',
-        'The lives of two mob hitmen, a boxer, a gangster\'s wife, and a pair of diner bandits intertwine in four tales of violence and redemption.',
+        'The lives of two mob hitmen, a boxer, a gangster''s wife, and a pair of diner bandits intertwine in four tales of violence and redemption.',
         'https://www.imdb.com/title/tt0110912/',
         4
     ),
     (
-        'Schindler\'s List',
+        'Schindler''s List',
         'In German-occupied Poland during World War II, Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.',
         'https://www.imdb.com/title/tt0108052/',
         5
