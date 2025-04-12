@@ -1,0 +1,24 @@
+{
+  "name": "backend-interview-practice",
+  "version": "1.0.0",
+  "description": "A basic movie rating app API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaulGLujan/backend-interview-practice.git"
+  },
+  "author": "Paul Lujan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaulGLujan/backend-interview-practice/issues"
+  },
+  "homepage": "https://github.com/PaulGLujan/backend-interview-practice#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "pg": "^8.14.1"
+  },
+  "type": "module"
+}
