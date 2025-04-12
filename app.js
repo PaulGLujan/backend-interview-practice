@@ -1,4 +1,6 @@
 import express from "express";
+
+import deleteMovie from "./queries/deleteMovie.js";
 import getAllMovies from "./queries/getAllMovies.js";
 import insertMovie from "./queries/insertMovie.js";
 
@@ -25,6 +27,21 @@ app.post("/movie", async (req, res) => {
     res.status(201).json(newMovie);
   } catch (error) {
     console.error("Error inserting movie:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.delete("/movie/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedMovie = await deleteMovie(id);
+    if (deletedMovie.length === 0) {
+      return res.status(404).json({ error: "Movie not found" });
+    }
+    res.status(200).json(deletedMovie);
+  } catch (error) {
+    console.error("Error deleting movie:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
