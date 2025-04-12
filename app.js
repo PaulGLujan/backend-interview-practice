@@ -3,6 +3,7 @@ import express from "express";
 import deleteMovie from "./queries/deleteMovie.js";
 import getAllMovies from "./queries/getAllMovies.js";
 import insertMovie from "./queries/insertMovie.js";
+import updateMovie from "./queries/updateMovie.js";
 
 const app = express();
 const port = 3000;
@@ -42,6 +43,22 @@ app.delete("/movie/:id", async (req, res) => {
     res.status(200).json(deletedMovie);
   } catch (error) {
     console.error("Error deleting movie:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.patch("/movie/:id", async (req, res) => {
+  const { id } = req.params;
+  const updateData = req.body;
+
+  try {
+    const updatedMovie = await updateMovie(id, updateData);
+    if (updatedMovie.length === 0) {
+      return res.status(404).json({ error: "Movie not found" });
+    }
+    res.status(200).json(updatedMovie);
+  } catch (error) {
+    console.error("Error updating movie:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
