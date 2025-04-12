@@ -1,19 +1,9 @@
-import pg from "pg";
+import pool from "../database/db.js";
 
 const deleteMovie = async (id) => {
-  const { Client } = pg;
-  const client = new Client({
-    user: "plujan2",
-    password: "",
-    host: "localhost",
-    port: 5432,
-    database: "movie-rating-app",
-  });
-  await client.connect();
   const deleteQuery = "delete from movies where MovieID = $1 returning *;";
   const values = [id];
-  const res = await client.query(deleteQuery, values);
-  await client.end();
+  const res = await pool.query(deleteQuery, values);
   return res.rows;
 };
 

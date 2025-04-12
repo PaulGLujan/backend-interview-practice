@@ -1,18 +1,7 @@
-import pg from "pg";
+import pool from "../database/db.js";
 
 const getAllMovies = async () => {
-  const { Client } = pg;
-  const client = new Client({
-    user: "plujan2",
-    password: "",
-    host: "localhost",
-    port: 5432,
-    database: "movie-rating-app",
-  });
-  await client.connect();
-
-  const res = await client.query("select * from movies;");
-  await client.end();
+  const res = await pool.query("select * from movies;");
   return res.rows;
 };
 
