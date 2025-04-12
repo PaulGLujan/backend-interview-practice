@@ -1,4 +1,5 @@
 import express from "express";
+import "dotenv/config";
 
 import deleteMovie from "./queries/deleteMovie.js";
 import getAllMovies from "./queries/getAllMovies.js";
