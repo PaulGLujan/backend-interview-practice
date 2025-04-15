@@ -3,6 +3,8 @@ import config from "./config/config.js";
 
 import { deleteMovie, getAllMovies, insertMovie, updateMovie } from "./queries";
 import { validateMovieData } from "./validators";
+import { errorHandler } from "./middlewares/errorHandler.js";
+import { ClientError } from "./errors";
 
 const app = express();
 const port = config.port;
@@ -18,7 +20,7 @@ app.use("/movie/:id", (req, res, next) => {
   const id = Number(req.params.id);
 
   if (isNaN(id)) {
-    throw new Error("Invalid ID");
+    throw new ClientError("Invalid ID", 400);
   }
 
   next();
@@ -51,7 +53,7 @@ app.delete("/movie/:id", async (req, res) => {
   try {
     const deletedMovie = await deleteMovie(id);
     if (deletedMovie.length === 0) {
-      throw new Error("Movie not found");
+      throw new ClientError("Movie not found", 404);
     }
     res.status(200).json(deletedMovie);
   } catch (error) {
@@ -66,7 +68,7 @@ app.patch("/movie/:id", async (req, res) => {
   try {
     const updatedMovie = await updateMovie(id, updateData);
     if (updatedMovie.length === 0) {
-      throw new Error("Movie not found");
+      throw new ClientError("Movie not found", 404);
     }
     res.status(200).json(updatedMovie);
   } catch (error) {
@@ -74,6 +76,8 @@ app.patch("/movie/:id", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

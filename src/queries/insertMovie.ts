@@ -1,10 +1,11 @@
 import pool from "../database/db";
+import { ClientError } from "../errors";
 import type { Movie } from "../models/movie";
 
 export const insertMovie = async (movie: Movie) => {
   const { title, summary, imdbLink, rating } = movie;
   if (!title) {
-    throw new Error("Title is required");
+    throw new ClientError("Title is required", 400);
   }
 
   const insertQuery =
