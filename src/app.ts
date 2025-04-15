@@ -30,24 +30,24 @@ app.use("/movie/:id", (req, res, next) => {
   next();
 });
 
-app.get("/movies", async (req, res, next) => {
+app.get("/movies", async (req, res) => {
   const movies = await getAllMovies();
   res.json(movies);
 });
 
-app.post("/movie", async (req, res, next) => {
+app.post("/movie", async (req, res) => {
   const { title, summary, imdbLink, rating } = req.body;
   const newMovie = await insertMovie({ title, summary, imdbLink, rating });
   res.status(201).json(newMovie);
 });
 
-app.delete("/movie/:id", async (req, res, next) => {
+app.delete("/movie/:id", async (req, res) => {
   const id = Number(req.params.id);
   const deletedMovie = await deleteMovie(id);
   res.status(200).json(deletedMovie);
 });
 
-app.patch("/movie/:id", async (req, res, next) => {
+app.patch("/movie/:id", async (req, res) => {
   const id = Number(req.params.id);
 
   const updatedMovie = await updateMovie(id, req.body);
