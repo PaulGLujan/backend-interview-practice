@@ -14,6 +14,16 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/movie/:id", (req, res, next) => {
+  const id = Number(req.params.id);
+
+  if (isNaN(id)) {
+    throw new Error("Invalid ID");
+  }
+
+  next();
+});
+
 app.get("/movies", async (req, res) => {
   try {
     const movies = await getAllMovies();
@@ -38,11 +48,6 @@ app.post("/movie", async (req, res) => {
 
 app.delete("/movie/:id", async (req, res) => {
   const id = Number(req.params.id);
-
-  if (isNaN(id)) {
-    throw new Error("Invalid ID");
-  }
-
   try {
     const deletedMovie = await deleteMovie(id);
     if (deletedMovie.length === 0) {
@@ -56,14 +61,8 @@ app.delete("/movie/:id", async (req, res) => {
 });
 
 app.patch("/movie/:id", async (req, res) => {
-  const id = parseInt(req.params.id, 10);
-
-  if (isNaN(id)) {
-    throw new Error("Invalid ID");
-  }
-
+  const id = Number(req.params.id);
   const updateData = req.body;
-
   try {
     const updatedMovie = await updateMovie(id, updateData);
     if (updatedMovie.length === 0) {
