@@ -1,7 +1,10 @@
 import pool from "../database/db.js";
 import { Movie } from "../models/movie.js";
+import { validateMovieData } from "../validators/movieValidators.js";
 
 const updateMovie = async (id: number, updateData: Partial<Movie>) => {
+  validateMovieData(updateData);
+
   const setClause = Object.keys(updateData)
     .map((key, index) => `${key} = $${index + 1}`)
     .join(", ");
