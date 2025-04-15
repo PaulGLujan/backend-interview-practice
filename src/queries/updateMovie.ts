@@ -1,5 +1,5 @@
-import pool from "../database/db.js";
-import { Movie } from "../models/movie.js";
+import pool from "../database/db";
+import { Movie } from "../models/movie";
 import { ClientError } from "../errors";
 
 export const updateMovie = async (id: number, updateData: Partial<Movie>) => {

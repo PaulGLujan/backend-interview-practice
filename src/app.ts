@@ -1,9 +1,9 @@
 import express from "express";
-import config from "./config/config.js";
+import config from "./config/config";
 
 import { deleteMovie, getAllMovies, insertMovie, updateMovie } from "./queries";
 import { validateMovieData } from "./validators";
-import { errorHandler } from "./middlewares/errorHandler.js";
+import { errorHandler } from "./middlewares/errorHandler";
 import { ClientError } from "./errors";
 
 const app = express();
