@@ -2,7 +2,7 @@ import pool from "../database/db";
 import { Movie } from "../models/movie";
 import { ClientError } from "../errors";
 
-export const updateMovie = async (id: number, updateData: Partial<Movie>) => {
+export async function updateMovie(id: number, updateData: Partial<Movie>) {
   const setClause = Object.keys(updateData)
     .map((key, index) => `${key} = $${index + 1}`)
     .join(", ");
@@ -17,4 +17,4 @@ export const updateMovie = async (id: number, updateData: Partial<Movie>) => {
   }
 
   return res.rows;
-};
+}

@@ -2,7 +2,7 @@ import pool from "../database/db";
 import { ClientError } from "../errors";
 import type { Movie } from "../models/movie";
 
-export const insertMovie = async (movie: Movie) => {
+export async function insertMovie(movie: Movie) {
   const { title, summary, imdbLink, rating } = movie;
   if (!title) {
     throw new ClientError("Title is required", 400);
@@ -14,4 +14,4 @@ export const insertMovie = async (movie: Movie) => {
 
   const res = await pool.query(insertQuery, values);
   return res.rows;
-};
+}

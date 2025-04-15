@@ -1,7 +1,7 @@
 import pool from "../database/db";
 import { ClientError } from "../errors";
 
-export const deleteMovie = async (id: number) => {
+export async function deleteMovie(id: number) {
   const deleteQuery = "delete from movies where MovieID = $1 returning *;";
   const values = [id];
   const res = await pool.query(deleteQuery, values);
@@ -11,4 +11,4 @@ export const deleteMovie = async (id: number) => {
   }
 
   return res.rows;
-};
+}
