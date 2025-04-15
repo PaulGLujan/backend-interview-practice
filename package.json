@@ -2,10 +2,10 @@
   "name": "backend-interview-practice",
   "version": "1.0.0",
   "description": "A basic movie rating app API.",
-  "main": "app.js",
+  "main": "./dist/app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "node dist/app.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,9 @@
     "express": "^5.1.0",
     "pg": "^8.14.1"
   },
-  "type": "module"
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.1",
+    "@types/pg": "^8.11.13"
+  }
 }

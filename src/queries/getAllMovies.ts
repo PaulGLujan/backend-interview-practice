@@ -1,4 +1,4 @@
-import pool from "../database/db.js";
+import pool from "../database/db";
 
 const getAllMovies = async () => {
   const res = await pool.query("select * from movies;");

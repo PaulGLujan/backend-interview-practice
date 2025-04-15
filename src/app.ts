@@ -1,5 +1,5 @@
 import express from "express";
-import "dotenv/config";
+import config from "./config/config.js";
 
 import deleteMovie from "./queries/deleteMovie.js";
 import getAllMovies from "./queries/getAllMovies.js";
@@ -7,7 +7,7 @@ import insertMovie from "./queries/insertMovie.js";
 import updateMovie from "./queries/updateMovie.js";
 
 const app = express();
-const port = 3000;
+const port = config.port;
 
 app.use(express.json());
 
@@ -34,12 +34,16 @@ app.post("/movie", async (req, res) => {
 });
 
 app.delete("/movie/:id", async (req, res) => {
-  const { id } = req.params;
+  const id = Number(req.params.id);
+
+  if (isNaN(id)) {
+    throw new Error("Invalid ID");
+  }
 
   try {
     const deletedMovie = await deleteMovie(id);
     if (deletedMovie.length === 0) {
-      return res.status(404).json({ error: "Movie not found" });
+      throw new Error("Movie not found");
     }
     res.status(200).json(deletedMovie);
   } catch (error) {
@@ -49,13 +53,18 @@ app.delete("/movie/:id", async (req, res) => {
 });
 
 app.patch("/movie/:id", async (req, res) => {
-  const { id } = req.params;
+  const id = parseInt(req.params.id, 10);
+
+  if (isNaN(id)) {
+    throw new Error("Invalid ID");
+  }
+
   const updateData = req.body;
 
   try {
     const updatedMovie = await updateMovie(id, updateData);
     if (updatedMovie.length === 0) {
-      return res.status(404).json({ error: "Movie not found" });
+      throw new Error("Movie not found");
     }
     res.status(200).json(updatedMovie);
   } catch (error) {

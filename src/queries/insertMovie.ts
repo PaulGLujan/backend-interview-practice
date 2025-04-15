@@ -1,6 +1,7 @@
-import pool from "../database/db.js";
+import pool from "../database/db";
+import type { Movie } from "../models/movie";
 
-const insertMovie = async ({ title, summary, imdbLink, rating }) => {
+const insertMovie = async ({ title, summary, imdbLink, rating }: Movie) => {
   if (!title) {
     throw new Error("Title is required");
   }

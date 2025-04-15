@@ -1,6 +1,7 @@
 import pool from "../database/db.js";
+import { Movie } from "../models/movie.js";
 
-const updateMovie = async (id, updateData) => {
+const updateMovie = async (id: number, updateData: Partial<Movie>) => {
   const setClause = Object.keys(updateData)
     .map((key, index) => `${key} = $${index + 1}`)
     .join(", ");
