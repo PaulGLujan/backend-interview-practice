@@ -1,10 +1,7 @@
 import express from "express";
 import config from "./config/config.js";
 
-import deleteMovie from "./queries/deleteMovie.js";
-import getAllMovies from "./queries/getAllMovies.js";
-import insertMovie from "./queries/insertMovie.js";
-import updateMovie from "./queries/updateMovie.js";
+import { deleteMovie, getAllMovies, insertMovie, updateMovie } from "./queries";
 
 const app = express();
 const port = config.port;

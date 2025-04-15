@@ -2,7 +2,7 @@ import pool from "../database/db";
 import type { Movie } from "../models/movie";
 import { validateMovieData } from "../validators/movieValidators";
 
-const insertMovie = async (movie: Movie) => {
+export const insertMovie = async (movie: Movie) => {
   const { title, summary, imdbLink, rating } = movie;
   if (!title) {
     throw new Error("Title is required");
@@ -17,5 +17,3 @@ const insertMovie = async (movie: Movie) => {
   const res = await pool.query(insertQuery, values);
   return res.rows;
 };
-
-export default insertMovie;

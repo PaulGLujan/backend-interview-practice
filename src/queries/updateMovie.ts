@@ -2,7 +2,7 @@ import pool from "../database/db.js";
 import { Movie } from "../models/movie.js";
 import { validateMovieData } from "../validators/movieValidators.js";
 
-const updateMovie = async (id: number, updateData: Partial<Movie>) => {
+export const updateMovie = async (id: number, updateData: Partial<Movie>) => {
   validateMovieData(updateData);
 
   const setClause = Object.keys(updateData)
@@ -15,5 +15,3 @@ const updateMovie = async (id: number, updateData: Partial<Movie>) => {
   const res = await pool.query(updateQuery, values);
   return res.rows;
 };
-
-export default updateMovie;
