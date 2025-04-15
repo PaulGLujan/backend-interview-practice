@@ -1,0 +1,39 @@
+{
+  "name": "backend-interview-practice",
+  "version": "1.0.0",
+  "description": "A basic movie rating app API.",
+  "main": "./dist/app.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/app.ts",
+    "lint": "eslint 'src/**/*.ts'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaulGLujan/backend-interview-practice.git"
+  },
+  "author": "Paul Lujan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaulGLujan/backend-interview-practice/issues"
+  },
+  "homepage": "https://github.com/PaulGLujan/backend-interview-practice#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "pg": "^8.14.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.24.0",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.1",
+    "@types/pg": "^8.11.13",
+    "eslint": "^9.24.0",
+    "globals": "^16.0.0",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.30.1"
+  }
+}
