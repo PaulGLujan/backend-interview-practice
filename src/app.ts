@@ -2,11 +2,17 @@ import express from "express";
 import config from "./config/config.js";
 
 import { deleteMovie, getAllMovies, insertMovie, updateMovie } from "./queries";
+import { validateMovieData } from "./validators";
 
 const app = express();
 const port = config.port;
 
 app.use(express.json());
+
+app.use((req, res, next) => {
+  validateMovieData(req.body);
+  next();
+});
 
 app.get("/movies", async (req, res) => {
   try {
