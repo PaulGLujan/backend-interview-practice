@@ -1,5 +1,5 @@
 import express from "express";
-import "dotenv/config";
+import config from "./config/config.js";
 
 import deleteMovie from "./queries/deleteMovie.js";
 import getAllMovies from "./queries/getAllMovies.js";
@@ -7,7 +7,7 @@ import insertMovie from "./queries/insertMovie.js";
 import updateMovie from "./queries/updateMovie.js";
 
 const app = express();
-const port = 3000;
+const port = config.port;
 
 app.use(express.json());
 
